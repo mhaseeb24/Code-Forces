@@ -4,8 +4,8 @@ class Drinks
 {
 private:
     int n;
-    fraction *p=new fraction [n];
-    fraction sum=0;
+    double *p=new double [n];
+    double sum=0;
 public:
     void getdata(int n);
     void result();

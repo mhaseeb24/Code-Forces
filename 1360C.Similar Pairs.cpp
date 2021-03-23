@@ -14,22 +14,14 @@
 #define MOD 1000000007
 #define lessTime ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 using namespace std;
-int main()
+void solve(int n)
 {
-    lessTime;
-    int n;
-    cin>>n;
     vector<int>A;
-    int temp;
+    int temp,even=0,odd=0;
     rep(i,0,n)
     {
         cin>>temp;
-        A.pb(temp);
-    }
-    int odd=0,even=0;
-    rep(i,0,3)
-    {
-        if(A.at(i)%2==0)
+        if(temp%2==0)
         {
             even++;
         }
@@ -37,28 +29,44 @@ int main()
         {
             odd++;
         }
+        A.pb(temp);
     }
-    if(even>odd)
+    if(odd%2==0 && even%2==0)
     {
-        rep(i,0,n)
-        {
-            if(A.at(i)%2!=0)
-            {
-                cout<<i+1;
-                return 0;
-            }
-        }
+        cout<<"YES"<<endl;
+    }
+    else if(odd%2!=0 && even%2==0)
+    {
+        cout<<"NO"<<endl;
+    }
+    else if(odd%2==0 && even%2!=0)
+    {
+        cout<<"NO"<<endl;
     }
     else
     {
-        rep(i,0,n)
+        sort(A.begin(),A.end());
+        rep(i,1,n)
         {
-            if(A.at(i)%2==0)
+            if(A.at(i)-A.at(i-1)==1)
             {
-                cout<<i+1;
-                return 0;
+                cout<<"YES"<<endl;
+                return;
             }
         }
+        cout<<"NO"<<endl;
+    }
+}
+int main()
+{
+    int t;
+    cin>>t;
+    while(t)
+    {
+        int n;
+        cin>>n;
+        solve(n);
+        t--;
     }
     return 0;
 }
